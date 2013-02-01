@@ -1,0 +1,57 @@
+#!/bin/sh
+
+# http://paste.ubuntu.com/1567760/
+# Paste from vanhoof at Fri, 25 Jan 2013 01:27:59 +0000
+
+set -x
+
+# tasks may be broken?
+tasks="standard xubuntu-desktop"
+packages="freegeek-extras freegeek-default-settings firefox ubuntu-standard xubuntu-desktop"
+repolists="config/archives/freegeek-live.list.chroot config/archives/freegeek-live.list.binary"
+aptkeys="config/archives/freegeek-live.key.binary config/archives/freegeek-live.key.chroot"
+
+rm -rf config
+
+lb config noauto --mode ubuntu --architecture i386 \
+  --binary-images iso --binary-filesystem fat16 \
+  --bootstrap debootstrap \
+  --parent-mirror-bootstrap http://us.archive.ubuntu.com/ubuntu/ \
+  --parent-mirror-binary http://us.archive.ubuntu.com/ubuntu/ \
+  --parent-mirror-binary-security http://us.archive.ubuntu.com/ubuntu/ \
+  --mirror-bootstrap http://us.archive.ubuntu.com/ubuntu/ \
+  --archive-areas "main universe multiverse" \
+  --parent-archive-areas "main universe multiverse" \
+  --parent-distribution precise --distribution precise \
+  --mirror-binary http://us.archive.ubuntu.com/ubuntu/ \
+  --apt-options "--yes --force-yes --option APT::Install-Recommends=true" \
+  --syslinux-theme ubuntu-precise \
+  --initramfs-compression gzip \
+  --linux-flavours "generic" \
+  "${@}"
+
+for task in $tasks ; do
+  mkdir -p config/task-lists/
+  echo "$task" >> config/task-lists/freegeek-live.chroot_install.list
+done
+
+for package in $packages ; do
+  mkdir -p config/package-lists/
+  echo "$package" >> config/package-lists/freegeek-live.chroot_install.list
+done
+
+# foo.list.chroot happens at build time? foo.list.binary happens in the image?
+for repolist in $repolists ; do
+  mkdir -p config/archives/
+  echo deb http://apt.freegeek.org/ubuntu-install precise main >> "$repolist"
+done
+
+# apt keyring for freegeek repositories
+for aptkey in $aptkeys ; do
+  mkdir -p config/archives/
+  cp /usr/share/keyrings/freegeek-archive-keyring.gpg $aptkey
+done
+
+# hack to install an unversioned kernel.
+echo 'mv binary/casper/vmlinuz-* binary/casper/vmlinuz' >> config/hooks/unversionedkernel.binary 
+echo 'mv binary/casper/initrd.img-* binary/casper/initrd.lz' >> config/hooks/unversionedkernel.binary 
