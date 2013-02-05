@@ -1,0 +1,25 @@
+This should generate a live/install image for Free Geek's Xubuntu 12.04 
+distribution. It includes too much to fit on a CD image, but should easily fit
+on a DVD.
+
+Ironically, it is tested to build on a Debian Wheezy system.
+
+Install live-build (3.0~b6-1 or newer, currently only in debian sid):
+
+  sudo apt-get install live-build
+
+Install git:
+
+  sudo apt-get install git
+
+  git clone git://git.freegeek.org/git/freegeek-live
+
+Run the build script:
+
+  cd freegeek-live
+
+  ./build
+
+This should  produce a binary.iso image which can be burned to DVD, as well as
+some files useable for network booting binary/casper/vmlinuz, 
+binary/casper/initrd.lz, binary/casper/filesystem.squashfs.

@@ -1,0 +1,6 @@
+#!/bin/sh
+
+set -x
+sudo lb clean
+lb config
+sudo lb build
