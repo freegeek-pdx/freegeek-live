@@ -53,5 +53,6 @@ for aptkey in $aptkeys ; do
 done
 
 # hack to install an unversioned kernel.
+mkdir -p config/hooks/
 echo 'mv binary/casper/vmlinuz-* binary/casper/vmlinuz' >> config/hooks/unversionedkernel.binary 
 echo 'mv binary/casper/initrd.img-* binary/casper/initrd.lz' >> config/hooks/unversionedkernel.binary 
