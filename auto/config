@@ -7,7 +7,7 @@ set -x
 
 # tasks may be broken?
 tasks="standard xubuntu-desktop"
-packages="freegeek-extras freegeek-default-settings firefox ubuntu-standard xubuntu-desktop"
+packages="freegeek-extras freegeek-default-settings freegeek-preferred-packages firefox ubuntu-standard xubuntu-desktop"
 repolists="config/archives/freegeek-live.list.chroot config/archives/freegeek-live.list.binary"
 aptkeys="config/archives/freegeek-live.key.binary config/archives/freegeek-live.key.chroot"
 
