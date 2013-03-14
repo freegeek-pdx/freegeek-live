@@ -25,7 +25,6 @@ lb config noauto --mode ubuntu --architecture i386 \
   --parent-distribution precise --distribution precise \
   --mirror-binary http://us.archive.ubuntu.com/ubuntu/ \
   --apt-options "--yes --force-yes --option APT::Install-Recommends=true" \
-  --syslinux-theme ubuntu-precise \
   --initramfs-compression gzip \
   --linux-flavours "generic" \
   "${@}"
