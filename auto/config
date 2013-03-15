@@ -51,6 +51,9 @@ for aptkey in $aptkeys ; do
   cp /usr/share/keyrings/freegeek-archive-keyring.gpg $aptkey
 done
 
+mkdir -p config/bootloaders/
+cp -a freegeek-live-theme/ config/bootloaders/isolinux/
+
 # hack to install an unversioned kernel.
 mkdir -p config/hooks/
 echo 'mv binary/casper/vmlinuz-* binary/casper/vmlinuz' >> config/hooks/unversionedkernel.binary 
