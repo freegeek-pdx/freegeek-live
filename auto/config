@@ -53,6 +53,8 @@ done
 
 mkdir -p config/bootloaders/
 cp -a freegeek-live-theme/ config/bootloaders/isolinux/
+cp -a freegeek-live-theme/ config/bootloaders/extlinux/
+cp -a freegeek-live-theme/ config/bootloaders/syslinux/
 
 # hack to install an unversioned kernel.
 mkdir -p config/hooks/
