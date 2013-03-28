@@ -14,7 +14,7 @@ aptkeys="config/archives/freegeek-live.key.binary config/archives/freegeek-live.
 rm -rf config
 
 lb config noauto --mode ubuntu --architecture i386 \
-  --binary-images hdd --binary-filesystem fat16 \
+  --binary-images iso-hybrid --binary-filesystem fat16 \
   --bootstrap debootstrap \
   --parent-mirror-bootstrap http://us.archive.ubuntu.com/ubuntu/ \
   --parent-mirror-binary http://us.archive.ubuntu.com/ubuntu/ \
