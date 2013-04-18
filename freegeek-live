@@ -1,0 +1,11 @@
+#!/bin/sh
+
+set -e
+
+cd /srv/freegeek-live
+./build
+date=$(date +%Y%m%d)
+name="/srv/freegeek-live-USB-DVD-${date}"
+cp binary.hybrid.iso ${name}.iso
+cp binary.hybrid.iso.zsync ${name}.iso.zsync
+cp build.log ${name}.build.log
