@@ -24,6 +24,7 @@ lb config noauto --mode ubuntu --architecture i386 \
   --parent-archive-areas "main universe multiverse" \
   --parent-distribution precise --distribution precise \
   --mirror-binary http://us.archive.ubuntu.com/ubuntu/ \
+  --apt-http-proxy http://proxy.fglan:3128 \
   --apt-options "--yes --force-yes --option APT::Install-Recommends=true" \
   --initramfs-compression gzip \
   --linux-flavours "generic" \
